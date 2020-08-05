@@ -1,7 +1,9 @@
 const express = require("express");
 const app = express();
+const connectDb = require("./Config/db");
+require('dotenv').config()
 app.use(express.json({ urlencoded: false }));
-
+connectDb();
 app.get("/", (req, res) => {
     res.json({
         msg: "Welcome to Contact Keeper App"
