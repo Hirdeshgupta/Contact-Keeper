@@ -3,35 +3,48 @@ const Router = express.Router();
 const Users = require("../models/user");
 const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
-// @route api/users 
-//@method POST
-//@desrc  To Reguster the users  
-//@privacy public
+const jwt = require("jsonwebtoken")
+    // @route api/users 
+    //@method POST
+    //@desrc  To Reguster the users  
+    //@privacy public
 
 Router.post("/", [
     // username must be an email
-    body('email').not().isEmpty().isEmail().withMessage('Please enter valid e-mail'),
-    // password must be at least 5 chars long
-    body('password').isLength({ min: 6 }).withMessage('Please ensure password is at least 6 characters long')
+    body('name', 'Please enter your name').not().isEmpty(),
+    body('email', 'Please enter valid e-mail').not().isEmpty().isEmail(),
+    body('password', 'Please ensure password is at least 6 characters long').not().isEmpty().isLength({ min: 6 })
 ], async(req, res) => {
     // Finds the validation errors in this request and wraps them in an object with handy functions
     const errors = validationResult(req);
+    //check whether the email already exists or not 
+    const is_email = await Users.findOne({ email: req.body.email });
+    if (is_email) {
+        errors.errors.push({ msg: "This e-mail is already registered try using another one " })
+    }
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     }
-    await Users.create({
-        name: req.body.username,
+    const hash = await bcrypt.hash(req.body.password, 10);
+    const user = new Users({
+        name: req.body.name,
         email: req.body.email,
-        password: req.body.password
+        password: hash
     });
-    await bcrypt.genSalt(10, function(err, salt) {
-        bcrypt.hash(req.body.password, salt, function(err, hash) {
-            if (err) return res.status(500).send('Server error')
-            Users.password = hash
-        });
-    });
-
-    res.json(user)
+    user.save(err => {
+        console.error(err)
+    })
+    try {
+        const token = await jwt.sign({
+            data: {
+                id: user._id
+            }
+        }, process.env.JSON_URI, { expiresIn: 60 * 60 })
+        console.log(token)
+        res.json({ token: token })
+    } catch (err) {
+        console.error(err)
+    }
 });
 
 
