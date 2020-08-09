@@ -6,7 +6,10 @@
     "scripts": {
         "start": "node index.js",
         "serve": "nodemon index.js",
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "client": "npm start --prefix Client",
+        "clientinstall": "npm install --prefix Client",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "concurrently \"npm run serve \" \"npm run client\"  "
     },
     "author": "Hirdesh Gupta",
     "license": "ISC",
