@@ -12,8 +12,10 @@ const jwt = require("jsonwebtoken");
 //@desrc  To get the authenticated users 
 //@privacy private 
 
-Router.get("/", auth, (req, res) => {
-    res.json({ msg: "Get the auth users " })
+Router.get("/", auth, async(req, res) => {
+    const user = await Users.findById(req.user_id);
+    console.log(user)
+    res.json(user)
 })
 
 // @route api/auth

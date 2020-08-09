@@ -4,6 +4,10 @@ const contactsSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    user: {
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: 'users'
+    },
     email: {
         type: String,
         required: true,
