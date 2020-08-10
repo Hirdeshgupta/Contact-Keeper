@@ -1,0 +1,79 @@
+a {
+    outline: none;
+}
+
+.makeStyles-root-10 {
+    display: flex;
+    min-height: 74.7vh;
+    flex-direction: column;
+}
+
+.custom-file-upload {
+    display: inline-block;
+    position: relative;
+    padding: 6px;
+    cursor: pointer;
+    background: #28A745;
+    margin-bottom: 25px;
+}
+
+.img-wrap {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+
+/* .img-upload:before {
+    content: "\f093";
+    font-size: 90px;
+    position: absolute;
+    padding-top: 80px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #63d3a6;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: #fff;
+} */
+
+.img-upload:hover:before {
+    opacity: 1;
+}
+
+.mainedit {
+    -webkit-box-shadow: -1px 0px 26px -3px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: -1px 0px 26px -3px rgba(0, 0, 0, 0.75);
+    box-shadow: -1px 0px 26px -3px rgba(0, 0, 0, 0.75);
+}
+
+#leftPanel {
+    background-color: #3F51B5;
+    color: #fff;
+    text-align: center;
+}
+
+#rightPanel {
+    min-height: 415px;
+}
+
+
+/* Credit to bootsnipp.com for the css for the color graph */
+
+.colorgraph {
+    height: 5px;
+    border-top: 0;
+    background: #c4e17f;
+    border-radius: 5px;
+    background-image: -webkit-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+    background-image: -moz-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+    background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+    background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+}
