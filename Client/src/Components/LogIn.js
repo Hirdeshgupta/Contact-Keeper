@@ -1,13 +1,22 @@
-import React, { Fragment } from 'react'
+import React, { Fragment,useState } from 'react'
 import LockOpenSharpIcon from '@material-ui/icons/LockOpenSharp';
 import Particles from "react-tsparticles";
+import { Alert } from '@material-ui/lab';
+
 function LogIn() {
+    const [login,setLogin] = useState({
+        password:"",
+        email:"",
+    })
+    const onChange = e=>{
+        setLogin({...login,[e.target.name]:e.target.value})
+    }
     return (
         <Fragment>
             <Particles
             style={{
                 width: "100%",
-                height:"100vh",
+                height:"120vh",
                 zIndex: 1,
                 position:"absolute",
             }}
@@ -85,22 +94,21 @@ function LogIn() {
             retina_detect: true
           }}
       />
-<div class="container2 login" style={{height:"100vh"}}>
-  <div class="container" style={{position:"absolute",zIndex:2,left:"50%",top:"50%",transform:"translate(-50%,-50%)"}}>
+<div class="container2 login" style={{height:"120vh"}}>
+  <div class="container mt-5 mt-lg-0" style={{position:"absolute",zIndex:2,left:"50%",top:"50%",transform:"translate(-50%,-50%)"}}>
     <div class="login-container-wrapper clearfix">
       <div class="logo">
           <LockOpenSharpIcon fontSize="large"/>
       </div>
       <h1 className="text-center text-white">Contact Keeper </h1>
       <div class="welcome"><strong>Welcome,</strong> please login</div>
-
-      <form class="form-horizontal login-form">
+      <form class="form-horizontal login-form mt-3" >
         <div class="form-group relative">
-          <input id="login_username" class="form-control input-lg" type="email"  placeholder="Email" required />
+          <input id="login_username" value={login.email} class="form-control input-lg" type="email"  placeholder="Email" name="email" onChange={onChange} required />
           <i class="fa fa-user"></i>
         </div>
         <div class="form-group relative password">
-          <input id="login_password" class="form-control input-lg" type="password" placeholder="Password" required />
+          <input id="login_password" value={login.password } class="form-control input-lg" type="password" placeholder="Password" name="password" onChange={onChange} required />
           <i class="fa fa-lock"></i>
         </div>
         <div class="form-group">

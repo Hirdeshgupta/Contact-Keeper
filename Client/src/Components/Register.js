@@ -1,7 +1,28 @@
-import React, { Fragment } from 'react'
+import React, { Fragment , useState } from 'react'
 import LockOpenSharpIcon from '@material-ui/icons/LockOpenSharp';
 import Particles from "react-tsparticles";
+import { Alert } from '@material-ui/lab';
 function LogIn() {
+    const [alerts,setAlerts] = useState(null);
+    const [login,setLogin] = useState({
+        password:"",
+        password1:"",
+        name:"",
+        email:"",
+    })
+    const onChange = e=>{
+        setLogin({...login,[e.target.name]:e.target.value})
+    }
+    const handleSubmit = e=>{
+        e.preventDefault();
+        console.log(login)
+        if(login.password!==login.password1){
+            setAlerts("Password and Confirm Password doesn't matched");
+        }
+        else{
+            setAlerts(null);
+        }
+    }
     return (
         <Fragment>
             <Particles
@@ -93,26 +114,26 @@ function LogIn() {
       </div>
       <h1 className="text-center text-white">Contact Keeper </h1>
       <div class="welcome"><strong>Welcome,</strong> please Regsiter</div>
-
-      <form class="form-horizontal login-form">
+        {alerts && <Alert severity="error">{alerts}</Alert>}
+      <form class="form-horizontal login-form mt-3" onSubmit={handleSubmit}>
       <div class="form-group relative">
-          <input id="login_username" class="form-control input-lg" type="text"  placeholder="Name" required />
+          <input id="login_username" class="form-control input-lg" type="text" name="name" value={login.name} onChange={onChange} placeholder="Name" required />
           <i class="fa fa-user"></i>
         </div>
         <div class="form-group relative">
-          <input id="login_username" class="form-control input-lg" type="email"  placeholder="Email" required />
+          <input id="login_username" class="form-control input-lg" type="email" name="email" value={login.email} onChange={onChange}  placeholder="Email" required />
           <i class="fa fa-user"></i>
         </div>
         <div class="form-group relative password">
-          <input id="login_password" class="form-control input-lg" type="password" placeholder="Password" required />
+          <input id="login_password" class="form-control input-lg" type="password" name="password" value={login.password} onChange={onChange} placeholder="Password" required />
           <i class="fa fa-lock"></i>
         </div>
         <div class="form-group relative password">
-          <input id="login_password" class="form-control input-lg" type="password" placeholder="Confirm Password" required />
+          <input id="login_password" class="form-control input-lg" type="password" name="password1" value={login.password1} onChange={onChange} placeholder="Confirm Password" required />
           <i class="fa fa-lock"></i>
         </div>
         <div class="form-group">
-          <button type="submit" class="btn btn-success btn-lg btn-block">Login</button>
+          <button type="submit" class="btn btn-success btn-lg btn-block">Register</button>
         </div>
         <div class="checkbox pull-left">
           <label><input type="checkbox" /> Remember</label>
