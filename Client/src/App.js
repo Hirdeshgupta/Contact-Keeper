@@ -1,26 +1,42 @@
-import React from 'react';
+import React ,{useState}from 'react';
 import Navbar from "./Components/Navbar";
-import Form from  "./Components/Form"
+import Home from  "./Components/Home"
 import {BrowserRouter as Router , Switch , Route } from "react-router-dom"
-import Contact from './Components/Contact';
+import AddContacts from './Components/AddContacts';
 import Footer from './Components/Footer';
 import ProfileEdit from "./Components/ProfileEdit";
+import LogIn from "./Components/LogIn";
+import Register from "./Components/Register";
 
 function App() {
-  return (
-    <Router>
-    <Navbar>
-    <Switch>
-      <Route path="/" exact  component={Form} />
-      <Route path="/contact" exact  component={Contact} />
-      <Route path="/profile/edit" exact  component={ProfileEdit} />
+  const [isLoggedIn,setIsLoggedIn] = useState(false);
+  if(isLoggedIn){
+    return (
+      <Router>
+        <Navbar>
+      <Switch>
+        <Route path="/" exact  component={Home} />
+        <Route path="/contacts/add" exact  component={AddContacts} />
+        <Route path="/profile/edit" exact  component={ProfileEdit} />
+      </Switch>
+      <Footer/>
+      </Navbar>
+      </Router>
+  
+    );
+  }
+  else{
+    return (
+      <Router>
+      <Switch>
+        <Route path="/" exact  component={LogIn} />
+        <Route path="/register" exact  component={Register} />
+      </Switch>
+      </Router>
+  
+    );
+  }
 
-    </Switch>
-    <Footer/>
-    </Navbar> 
-    </Router>
-
-  );
 }
 
 export default App;
