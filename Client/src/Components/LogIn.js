@@ -2,7 +2,7 @@ import React, { Fragment,useState } from 'react'
 import LockOpenSharpIcon from '@material-ui/icons/LockOpenSharp';
 import Particles from "react-tsparticles";
 import { Alert } from '@material-ui/lab';
-
+import {Link} from "react-router-dom";
 function LogIn() {
     const [login,setLogin] = useState({
         password:"",
@@ -94,35 +94,32 @@ function LogIn() {
             retina_detect: true
           }}
       />
-<div class="container2 login" style={{height:"120vh"}}>
-  <div class="container mt-5 mt-lg-0" style={{position:"absolute",zIndex:2,left:"50%",top:"50%",transform:"translate(-50%,-50%)"}}>
-    <div class="login-container-wrapper clearfix">
-      <div class="logo">
+<div className ="container2 login" style={{height:"120vh"}}>
+  <div className ="container mt-5 mt-lg-0" style={{position:"absolute",zIndex:2,left:"50%",top:"50%",transform:"translate(-50%,-50%)"}}>
+    <div className ="login-container-wrapper clearfix">
+      <div className ="logo">
           <LockOpenSharpIcon fontSize="large"/>
       </div>
-      <h1 className="text-center text-white">Contact Keeper </h1>
-      <div class="welcome"><strong>Welcome,</strong> please login</div>
-      <form class="form-horizontal login-form mt-3" >
-        <div class="form-group relative">
-          <input id="login_username" value={login.email} class="form-control input-lg" type="email"  placeholder="Email" name="email" onChange={onChange} required />
-          <i class="fa fa-user"></i>
+      <h1 className ="text-center text-white">Contact Keeper </h1>
+      <div className ="welcome"><strong>Welcome,</strong> please login</div>
+      <form className ="form-horizontal login-form mt-3" >
+        <div className ="form-group relative">
+          <input id="login_username" value={login.email} className ="form-control input-lg" type="email"  placeholder="Email" name="email" onChange={onChange} required />
+          <i className ="fa fa-user"></i>
         </div>
-        <div class="form-group relative password">
-          <input id="login_password" value={login.password } class="form-control input-lg" type="password" placeholder="Password" name="password" onChange={onChange} required />
-          <i class="fa fa-lock"></i>
+        <div className ="form-group relative password">
+          <input id="login_password" value={login.password } className ="form-control input-lg" type="password" placeholder="Password" name="password" onChange={onChange} required />
+          <i className ="fa fa-lock"></i>
         </div>
-        <div class="form-group">
-          <button type="submit" class="btn btn-success btn-lg btn-block">Login</button>
+        <div className ="form-group">
+          <button type="submit" className ="btn btn-success btn-lg btn-block">Login</button>
         </div>
-        <hr class="hr-text" data-content="OR" />
-        <button class="loginBtn loginBtn--facebook" style={{height:52,width:"100%",paddingLeft:"30%"}}>
+        <hr className="hr-text" data-content="OR" />
+        <button className ="loginBtn loginBtn--facebook" style={{height:52,width:"100%",paddingLeft:"30%"}}>
             Login with Facebook
         </button>
-        <div class="checkbox pull-left">
-          <label><input type="checkbox" /> Remember</label>
-        </div>
-        <div class="checkbox pull-right">
-          <label> <a class="forget" href="" title="forget">Forgot your password</a> </label>
+        <div className ="checkbox text-center mt-3">
+          <label> <Link className ="forget" to="/register" title="forget">Do not have an account ? Register here </Link> </label>
         </div>
       </form>
     </div>

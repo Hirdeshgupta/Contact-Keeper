@@ -1,6 +1,7 @@
 import React, { Fragment , useState } from 'react'
 import LockOpenSharpIcon from '@material-ui/icons/LockOpenSharp';
 import Particles from "react-tsparticles";
+import {Link } from "react-router-dom";
 import { Alert } from '@material-ui/lab';
 function LogIn() {
     const [alerts,setAlerts] = useState(null);
@@ -106,41 +107,41 @@ function LogIn() {
             retina_detect: true
           }}
       />
-<div class="container2 login" >
-  <div class="container mt-5 mt-lg-0" style={{position:"absolute",zIndex:2,left:"50%",top:"55%",transform:"translate(-50%,-50%)"}}>
-    <div class="login-container-wrapper clearfix">
-      <div class="logo">
+<div className="container2 login" >
+  <div className="container mt-5 mt-lg-0" style={{position:"absolute",zIndex:2,left:"50%",top:"55%",transform:"translate(-50%,-50%)"}}>
+    <div className="login-container-wrapper clearfix">
+      <div className="logo">
           <LockOpenSharpIcon fontSize="large"/>
       </div>
       <h1 className="text-center text-white">Contact Keeper </h1>
-      <div class="welcome"><strong>Welcome,</strong> please Regsiter</div>
+      <div className="welcome"><strong>Welcome,</strong> please Regsiter</div>
         {alerts && <Alert severity="error">{alerts}</Alert>}
-      <form class="form-horizontal login-form mt-3" onSubmit={handleSubmit}>
-      <div class="form-group relative">
-          <input id="login_username" class="form-control input-lg" type="text" name="name" value={login.name} onChange={onChange} placeholder="Name" required />
-          <i class="fa fa-user"></i>
+      <form className="form-horizontal login-form mt-3" onSubmit={handleSubmit}>
+      <div className="form-group relative">
+          <input id="login_username" className="form-control input-lg" type="text" name="name" value={login.name} onChange={onChange} placeholder="Name" required />
+          <i className="fa fa-user"></i>
         </div>
-        <div class="form-group relative">
-          <input id="login_username" class="form-control input-lg" type="email" name="email" value={login.email} onChange={onChange}  placeholder="Email" required />
-          <i class="fa fa-user"></i>
+        <div className="form-group relative">
+          <input id="login_username" className="form-control input-lg" type="email" name="email" value={login.email} onChange={onChange}  placeholder="Email" required />
+          <i className="fa fa-user"></i>
         </div>
-        <div class="form-group relative password">
-          <input id="login_password" class="form-control input-lg" type="password" name="password" value={login.password} onChange={onChange} placeholder="Password" required />
-          <i class="fa fa-lock"></i>
+        <div className="form-group relative password">
+          <input id="login_password" className="form-control input-lg" type="password" name="password" value={login.password} onChange={onChange} placeholder="Password" required />
+          <i className="fa fa-lock"></i>
         </div>
-        <div class="form-group relative password">
-          <input id="login_password" class="form-control input-lg" type="password" name="password1" value={login.password1} onChange={onChange} placeholder="Confirm Password" required />
-          <i class="fa fa-lock"></i>
+        <div className="form-group relative password">
+          <input id="login_password" className="form-control input-lg" type="password" name="password1" value={login.password1} onChange={onChange} placeholder="Confirm Password" required />
+          <i className="fa fa-lock"></i>
         </div>
-        <div class="form-group">
-          <button type="submit" class="btn btn-success btn-lg btn-block">Register</button>
+        <div className="form-group">
+          <button type="submit" className="btn btn-success btn-lg btn-block">Register</button>
         </div>
-        <hr class="hr-text" data-content="OR" />
-        <button class="loginBtn loginBtn--facebook" style={{height:52,width:"100%",paddingLeft:"30%"}}>
+        <hr className="hr-text" data-content="OR" />
+        <button className="loginBtn loginBtn--facebook" style={{height:52,width:"100%",paddingLeft:"30%"}}>
                 Register with Facebook
         </button>
-        <div class="checkbox pull-right mt-3">
-          <label> <a class="forget" href="" title="forget">Already have an account ? Log In</a> </label>
+        <div className="checkbox text-center mt-3">
+          <label> <Link className="forget" to="/" title="forget">Already have an account ? Log In</Link> </label>
         </div>
       </form>
     </div>
