@@ -28,7 +28,7 @@ function LogIn() {
         <Fragment>
             <Particles
             style={{
-                width: "100%",
+                width: "100vw",
                 height:"120vh",
                 zIndex: 1,
                 position:"absolute",
@@ -108,7 +108,7 @@ function LogIn() {
           }}
       />
 <div className="container2 login" >
-  <div className="container mt-5 mt-lg-0" style={{position:"absolute",zIndex:2,left:"50%",top:"55%",transform:"translate(-50%,-50%)"}}>
+  <div className="container mt-5 pt-4 pt-lg-0 mt-lg-0" style={{position:"absolute",zIndex:2,left:"50%",top:"55%",transform:"translate(-50%,-50%)"}}>
     <div className="login-container-wrapper clearfix">
       <div className="logo">
           <LockOpenSharpIcon fontSize="large"/>
@@ -137,7 +137,7 @@ function LogIn() {
           <button type="submit" className="btn btn-success btn-lg btn-block">Register</button>
         </div>
         <hr className="hr-text" data-content="OR" />
-        <button className="loginBtn loginBtn--facebook" style={{height:52,width:"100%",paddingLeft:"30%"}}>
+        <button className="loginBtn loginBtn--facebook" style={{height:52,width:"100%",paddingLeft:"25%"}} >
                 Register with Facebook
         </button>
         <div className="checkbox text-center mt-3">

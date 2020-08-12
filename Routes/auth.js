@@ -1,11 +1,21 @@
 const express = require("express");
 const Router = express.Router();
-const auth = require("../middleware/auth");
+const auth = require("../middleware/auth").checktoken;
 const Users = require("../models/user");
 const bcrypt = require('bcrypt');
 const { body, validationResult } = require("express-validator")
 const jwt = require("jsonwebtoken");
 
+
+const passport = require("passport");
+
+
+
+
+Router.get("/facebook", passport.authenticate('facebook', { authType: 'rerequest', scope: ['email'] }));
+Router.get("/facebook/redirect", passport.authenticate('facebook', { failureRedirect: '/' }), (req, res) => {
+    res.redirect("http://localhost:3000");
+})
 
 // @route api/auth
 //@method GET

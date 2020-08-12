@@ -1,6 +1,6 @@
 const express = require("express");
 const Router = express.Router();
-const auth = require("../middleware/auth");
+const auth = require("../middleware/auth").checktoken;
 const Contacts = require("../models/contatcs");
 // @route api/contact 
 //@method GET

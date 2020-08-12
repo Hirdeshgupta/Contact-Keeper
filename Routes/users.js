@@ -4,10 +4,21 @@ const Users = require("../models/user");
 const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
 const jwt = require("jsonwebtoken")
-    // @route api/users 
-    //@method POST
-    //@desrc  To Reguster the users  
-    //@privacy public
+
+
+
+// Router.get("/", (req, res) => {
+//     if (req.isAuthenticated()) {
+//         res.json({ isAutheticated: true });
+//     } else {
+//         res.json({ isAutheticated: false });
+//     }
+// })
+
+// @route api/users 
+//@method POST
+//@desrc  To Reguster the users  
+//@privacy public
 
 Router.post("/", [
     // username must be an email

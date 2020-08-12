@@ -114,14 +114,16 @@ function LogIn() {
         <div className ="form-group">
           <button type="submit" className ="btn btn-success btn-lg btn-block">Login</button>
         </div>
-        <hr className="hr-text" data-content="OR" />
-        <button className ="loginBtn loginBtn--facebook" style={{height:52,width:"100%",paddingLeft:"30%"}}>
+      </form>
+      <hr className="hr-text text-center" data-content="OR" />
+      <a href="http://localhost:5000/api/auth/facebook">
+        <button  className ="loginBtn loginBtn--facebook"  style={{height:52,width:"100%",paddingLeft:"25%"}}>
             Login with Facebook
         </button>
+        </a>
         <div className ="checkbox text-center mt-3">
           <label> <Link className ="forget" to="/register" title="forget">Do not have an account ? Register here </Link> </label>
         </div>
-      </form>
     </div>
   </div>
 
