@@ -114,6 +114,10 @@ function LogIn() {
         <div class="form-group">
           <button type="submit" class="btn btn-success btn-lg btn-block">Login</button>
         </div>
+        <hr class="hr-text" data-content="OR" />
+        <button class="loginBtn loginBtn--facebook" style={{height:52,width:"100%",paddingLeft:"30%"}}>
+            Login with Facebook
+        </button>
         <div class="checkbox pull-left">
           <label><input type="checkbox" /> Remember</label>
         </div>

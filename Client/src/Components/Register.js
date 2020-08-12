@@ -135,11 +135,12 @@ function LogIn() {
         <div class="form-group">
           <button type="submit" class="btn btn-success btn-lg btn-block">Register</button>
         </div>
-        <div class="checkbox pull-left">
-          <label><input type="checkbox" /> Remember</label>
-        </div>
-        <div class="checkbox pull-right">
-          <label> <a class="forget" href="" title="forget">Forgot your password</a> </label>
+        <hr class="hr-text" data-content="OR" />
+        <button class="loginBtn loginBtn--facebook" style={{height:52,width:"100%",paddingLeft:"30%"}}>
+                Register with Facebook
+        </button>
+        <div class="checkbox pull-right mt-3">
+          <label> <a class="forget" href="" title="forget">Already have an account ? Log In</a> </label>
         </div>
       </form>
     </div>
