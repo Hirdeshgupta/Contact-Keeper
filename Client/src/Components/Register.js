@@ -3,7 +3,9 @@ import LockOpenSharpIcon from '@material-ui/icons/LockOpenSharp';
 import Particles from "react-tsparticles";
 import {Link } from "react-router-dom";
 import { Alert } from '@material-ui/lab';
-function LogIn() {
+import axios from "axios";
+import setAuthToken from "../utils/setAuthToken";
+function LogIn(props) {
     const [alerts,setAlerts] = useState(null);
     const [login,setLogin] = useState({
         password:"",
@@ -11,17 +13,44 @@ function LogIn() {
         name:"",
         email:"",
     })
+    const setIsLoggedIn = x=>{
+      props.setIsLoggedIn(x);
+    }
     const onChange = e=>{
         setLogin({...login,[e.target.name]:e.target.value})
     }
-    const handleSubmit = e=>{
+    const handleSubmit = async e=>{
         e.preventDefault();
-        console.log(login)
         if(login.password!==login.password1){
             setAlerts("Password and Confirm Password doesn't matched");
         }
         else{
             setAlerts(null);
+            try {
+              console.log("hi")
+              const config = {
+                headers:{
+                  ContentType:"application/json"
+                }
+              }
+              const res  = await axios.post('http://localhost:5000/api/users',{
+                name:login.name,
+                email:login.email,
+                password:login.password
+              },config);
+              localStorage.setItem("token",res.data.token);
+              setAuthToken(localStorage.getItem('token'));
+              try {
+                const res = axios.get("http://localhost:5000/api/auth");
+                setIsLoggedIn(true);
+                res.then(data=>console.log(data));
+
+              } catch (error) {
+                console.error(error);
+              }
+            } catch (error) {
+              console.error(error)
+            }
         }
     }
     return (
@@ -136,6 +165,7 @@ function LogIn() {
         <div className="form-group">
           <button type="submit" className="btn btn-success btn-lg btn-block">Register</button>
         </div>
+        </form>
         <hr className="hr-text" data-content="OR" />
         <button className="loginBtn loginBtn--facebook" style={{height:52,width:"100%",paddingLeft:"25%"}} >
                 Register with Facebook
@@ -143,7 +173,6 @@ function LogIn() {
         <div className="checkbox text-center mt-3">
           <label> <Link className="forget" to="/" title="forget">Already have an account ? Log In</Link> </label>
         </div>
-      </form>
     </div>
   </div>
 

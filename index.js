@@ -1,23 +1,24 @@
 const express = require("express");
 const app = express();
+const cors = require('cors');
 const connectDb = require("./Config/db");
 const session = require("express-session");
 const passport = require("passport");
 require('dotenv').config()
 app.use(express.json({ extended: false }))
 connectDb();
-
+app.use(cors());
 require("./config/passport")(passport);
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
+
 app.use(session({
     secret: 'keyboard cat',
     resave: false,
-    saveUninitialized: true,
-    cookie: { secure: true }
+    saveUninitialized: false
 }))
 app.use(passport.initialize());
 app.use(passport.session());

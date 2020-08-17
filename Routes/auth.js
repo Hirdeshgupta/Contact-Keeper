@@ -12,10 +12,10 @@ const passport = require("passport");
 
 
 
-Router.get("/facebook", passport.authenticate('facebook', { authType: 'rerequest', scope: ['email'] }));
-Router.get("/facebook/redirect", passport.authenticate('facebook', { failureRedirect: '/' }), (req, res) => {
-    res.redirect("http://localhost:3000");
-})
+// Router.get("/facebook", passport.authenticate('facebook', { authType: 'rerequest', scope: ['email'] }));
+// Router.get("/facebook/redirect", passport.authenticate('facebook', { failureRedirect: '/' }), (req, res) => {
+//     res.redirect("http://localhost:3000");
+// })
 
 // @route api/auth
 //@method GET
@@ -24,8 +24,7 @@ Router.get("/facebook/redirect", passport.authenticate('facebook', { failureRedi
 
 Router.get("/", auth, async(req, res) => {
     const user = await Users.findById(req.user_id);
-    console.log(user)
-    res.json(user)
+    res.json({ user: user });
 })
 
 // @route api/auth
@@ -42,11 +41,15 @@ Router.post("/", [
     //check whether the email already exists or not 
     const is_email = await Users.findOne({ email });
     if (!is_email) {
+        console.log("This e-mail is not registered try registering first ");
         errors.errors.push({ msg: "This e-mail is not registered try registering first " })
     } else {
         if (password) {
             const comparedPass = await bcrypt.compare(password, is_email.password);
-            if (!comparedPass) errors.errors.push({ msg: "Invalid Credentials" })
+            if (!comparedPass) {
+                console.log("Invalid Credentials");
+                errors.errors.push({ msg: "Invalid Credentials" })
+            }
         }
     }
     if (!errors.isEmpty()) {
@@ -61,6 +64,7 @@ Router.post("/", [
         console.log(token)
         return res.json({ token: token })
     } catch (err) {
+        console.log('err')
         console.error(err)
     }
 })

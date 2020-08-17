@@ -126,6 +126,10 @@ export default function MiniDrawer(props) {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+  const handleLogout =()=>{
+    localStorage.setItem('token',' ');
+    props.setIsLoggedIn(false);
+  }
 
   return (
     <div className={classes.root}>
@@ -149,7 +153,7 @@ export default function MiniDrawer(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-          <Link to="/" style={{color:"white",textDecoration:"none",marginLeft:20}}>
+          <Link to="/register" style={{color:"white",textDecoration:"none",marginLeft:20}}>
             Contact Kepper
         </Link>
           </Typography>
@@ -184,8 +188,8 @@ export default function MiniDrawer(props) {
                 open={open1}
                 onClose={handleClose}
               >
-                <Link to="/profile/edit"><MenuItem onClick={handleClose}>Edit Profile</MenuItem></Link>
-                <Link><MenuItem onClick={handleClose}>Log Out</MenuItem></Link>
+                <Link to="/profile/edit" style={{color:"black"}}><MenuItem   onClick={handleClose}>Edit Profile</MenuItem></Link>
+                <Link  style={{color:"black"}}><MenuItem onClick={handleLogout}>Log Out</MenuItem></Link>
               </Menu>
             </div>
           )}
@@ -220,7 +224,7 @@ export default function MiniDrawer(props) {
         </List> */}
         <Divider />
         <List>
-            <Link to="/" style={{color:"black",textDecoration:"none"}}>
+            <Link to="/register" style={{color:"black",textDecoration:"none"}}>
             <BootstrapTooltip title="Home">
                 <ListItem button >
                     <ListItemIcon><HomeSharpIcon/></ListItemIcon>

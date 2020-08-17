@@ -3,14 +3,46 @@ import LockOpenSharpIcon from '@material-ui/icons/LockOpenSharp';
 import Particles from "react-tsparticles";
 import { Alert } from '@material-ui/lab';
 import {Link} from "react-router-dom";
-function LogIn() {
+import axios from "axios";
+import setAuthToken from "../utils/setAuthToken";
+function LogIn(props) {
     const [login,setLogin] = useState({
         password:"",
         email:"",
     })
+    const setIsLoggedIn = x=>{
+      props.setIsLoggedIn(x);
+    }
     const onChange = e=>{
         setLogin({...login,[e.target.name]:e.target.value})
     }
+    const handleSubmit = async e=>{
+      e.preventDefault();
+          try {
+            console.log(login);
+            const config = {
+              headers:{
+                ContentType:"application/json"
+              }
+            }
+            const res  = await axios.post('http://localhost:5000/api/auth',{
+              password:login.password,
+              email:login.email,
+            },config);
+            localStorage.setItem("token",res.data.token);
+            setAuthToken(localStorage.getItem('token'));
+            try {
+              const res = axios.get("http://localhost:5000/api/auth");
+              setIsLoggedIn(true);
+              res.then(data=>console.log(data));
+
+            } catch (error) {
+              console.error(error);
+            }
+          } catch (error) {
+            console.error(error)
+          }
+      }
     return (
         <Fragment>
             <Particles
@@ -102,7 +134,7 @@ function LogIn() {
       </div>
       <h1 className ="text-center text-white">Contact Keeper </h1>
       <div className ="welcome"><strong>Welcome,</strong> please login</div>
-      <form className ="form-horizontal login-form mt-3" >
+      <form className ="form-horizontal login-form mt-3" onSubmit={handleSubmit}>
         <div className ="form-group relative">
           <input id="login_username" value={login.email} className ="form-control input-lg" type="email"  placeholder="Email" name="email" onChange={onChange} required />
           <i className ="fa fa-user"></i>
