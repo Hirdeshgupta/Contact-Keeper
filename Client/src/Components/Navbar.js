@@ -8,6 +8,7 @@ import List from '@material-ui/core/List';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
+import { withRouter } from 'react-router';
 import Fab from '@material-ui/core/Fab';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -88,8 +89,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(3),
   },
 }));
-
-export default function MiniDrawer(props) {
+ function MiniDrawer(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -129,6 +129,7 @@ export default function MiniDrawer(props) {
   const handleLogout =()=>{
     localStorage.setItem('token',' ');
     props.setIsLoggedIn(false);
+    props.history.push("/");
   }
 
   return (
@@ -277,3 +278,4 @@ export default function MiniDrawer(props) {
     </div>
   );
 }
+export default withRouter(MiniDrawer);
