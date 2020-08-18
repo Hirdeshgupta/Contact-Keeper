@@ -6,6 +6,7 @@ import {Link} from "react-router-dom";
 import axios from "axios";
 import setAuthToken from "../utils/setAuthToken";
 function LogIn(props) {
+  const [alerts,setAlerts] = useState(null);
     const [login,setLogin] = useState({
         password:"",
         email:"",
@@ -37,10 +38,12 @@ function LogIn(props) {
               res.then(data=>console.log(data));
 
             } catch (error) {
-              console.error(error);
+              console.log(error);
             }
           } catch (error) {
-            console.error(error)
+            console.log(error);
+            setAlerts("Invalid Credentials")
+
           }
       }
     return (
@@ -134,6 +137,7 @@ function LogIn(props) {
       </div>
       <h1 className ="text-center text-white">Contact Keeper </h1>
       <div className ="welcome"><strong>Welcome,</strong> please login</div>
+      {alerts && <Alert severity="error">{alerts}</Alert>}
       <form className ="form-horizontal login-form mt-3" onSubmit={handleSubmit}>
         <div className ="form-group relative">
           <input id="login_username" value={login.email} className ="form-control input-lg" type="email"  placeholder="Email" name="email" onChange={onChange} required />

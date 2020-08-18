@@ -21,8 +21,11 @@ function LogIn(props) {
     }
     const handleSubmit = async e=>{
         e.preventDefault();
+        if(login.password.length<6){
+          return setAlerts("Password must be aleast 6 characters long");
+      }
         if(login.password!==login.password1){
-            setAlerts("Password and Confirm Password doesn't matched");
+            return setAlerts("Password and Confirm Password doesn't matched");
         }
         else{
             setAlerts(null);
@@ -50,6 +53,7 @@ function LogIn(props) {
               }
             } catch (error) {
               console.error(error)
+              return setAlerts("Email already exists ")
             }
         }
     }
